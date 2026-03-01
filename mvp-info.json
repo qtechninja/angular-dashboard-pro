@@ -1,0 +1,19 @@
+{
+  "name": "Angular Dashboard Pro",
+  "slug": "angular-dashboard-pro",
+  "created_at": "2026-03-01T14:20:19.182Z",
+  "stack": {
+    "frontend": "React + Vite + Tailwind CSS",
+    "backend": "Node.js + Express",
+    "database": "SQLite",
+    "testing": "Playwright",
+    "deployment": "Render"
+  },
+  "urls": {
+    "frontend_local": "http://localhost:5173",
+    "backend_local": "http://localhost:3001",
+    "frontend_prod": "https://angular-dashboard-pro-web.onrender.com",
+    "backend_prod": "https://angular-dashboard-pro-api.onrender.com"
+  },
+  "status": "scaffolded"
+}
