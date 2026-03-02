@@ -1,4 +1,10 @@
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+// Auto-detect API URL: use env var if set, otherwise derive from hostname on Render
+const API_BASE = import.meta.env.VITE_API_URL || (() => {
+  if (typeof window !== 'undefined' && window.location.hostname.endsWith('.onrender.com')) {
+    return `https://${window.location.hostname.replace('-web', '-api')}/api`;
+  }
+  return '/api';
+})();
 
 async function request(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`;
