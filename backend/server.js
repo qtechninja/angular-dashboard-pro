@@ -11,7 +11,21 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(helmet());
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
+// CORS: allow configured frontend, Render domains, and localhost for dev
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin) return cb(null, true); // allow non-browser requests
+    const allowed = [
+      process.env.FRONTEND_URL,
+      'http://localhost:5173',
+      'http://localhost:3000',
+    ].filter(Boolean);
+    if (allowed.includes(origin) || origin.endsWith('.onrender.com')) {
+      return cb(null, true);
+    }
+    cb(null, true); // permissive for MVP demos
+  },
+}));
 app.use(morgan('dev'));
 app.use(express.json());
 
